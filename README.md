@@ -24,37 +24,37 @@
 	```
 
 2. **Запустите сборку (Slim версия):**
-   ```bash
+```bash
 docker build -f Dockerfile.slim \
-  --build-arg REF_TYPE=tags \
-  --build-arg VERSION=0.1.1 \
-  --build-arg CHECKSUM=<ВАШ_ПОЛУЧЕННЫЙ_ХЭШ> \
-  -t my-static-jinja:0.1.1-slim .
-	```
+	--build-arg REF_TYPE=tags \
+	--build-arg VERSION=0.1.1 \
+	--build-arg CHECKSUM=<ВАШ_ПОЛУЧЕННЫЙ_ХЭШ> \
+	-t my-static-jinja:0.1.1-slim .
+```
 	
 ### Пример 2: Сборка свежей версии (ветка main)
 1.  **Получите хэш ветки main:**
-    ```bash
-    curl -L [https://github.com/MrDave/StaticJinjaPlus/archive/refs/heads/main.tar.gz](https://github.com/MrDave/StaticJinjaPlus/archive/refs/heads/main.tar.gz) | sha256sum
-	```
+```bash
+	curl -L [https://github.com/MrDave/StaticJinjaPlus/archive/refs/heads/main.tar.gz](https://github.com/MrDave/StaticJinjaPlus/archive/refs/heads/main.tar.gz) | sha256sum
+```
 
 2. **Запустите сборку (Ubuntu версия):**
-   ```bash
+```bash
 docker build -f Dockerfile.ubuntu \
-  --build-arg REF_TYPE=heads \
-  --build-arg VERSION=main \
-  --build-arg CHECKSUM=<ВАШ_ПОЛУЧЕННЫЙ_ХЭШ> \
-  -t my-static-jinja:develop .
+   --build-arg REF_TYPE=heads \
+   --build-arg VERSION=main \
+   --build-arg CHECKSUM=<ВАШ_ПОЛУЧЕННЫЙ_ХЭШ> \
+   -t my-static-jinja:develop .
 ```
 
 ### Как использовать
-   ```bash
+```bash
 	docker run --rm \
-  -v "$(pwd)":/site \
-  -w /site \
-  my-static-jinja:0.1.1-slim \
-  --srcpath ./templates \
-  --outpath ./build
+		-v "$(pwd)":/site \
+		-w /site \
+		my-static-jinja:0.1.1-slim \
+		--srcpath ./templates \
+		--outpath ./build
 ```
 
 ## Цели проекта
