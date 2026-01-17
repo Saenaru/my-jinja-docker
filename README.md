@@ -22,6 +22,7 @@
    ```bash
    curl -L [https://github.com/MrDave/StaticJinjaPlus/archive/refs/tags/0.1.1.tar.gz](https://github.com/MrDave/StaticJinjaPlus/archive/refs/tags/0.1.1.tar.gz) | sha256sum
 ```
+
 2. **Запустите сборку (Slim версия):**
    ```bash
 docker build -f Dockerfile.slim \
@@ -29,12 +30,13 @@ docker build -f Dockerfile.slim \
   --build-arg VERSION=0.1.1 \
   --build-arg CHECKSUM=<ВАШ_ПОЛУЧЕННЫЙ_ХЭШ> \
   -t my-static-jinja:0.1.1-slim .
-```
+	```
+	
 ### Пример 2: Сборка свежей версии (ветка main)
 1.  **Получите хэш ветки main:**
     ```bash
     curl -L [https://github.com/MrDave/StaticJinjaPlus/archive/refs/heads/main.tar.gz](https://github.com/MrDave/StaticJinjaPlus/archive/refs/heads/main.tar.gz) | sha256sum
-```
+	```
 
 2. **Запустите сборку (Ubuntu версия):**
    ```bash
@@ -47,7 +49,7 @@ docker build -f Dockerfile.ubuntu \
 
 ### Как использовать
    ```bash
-docker run --rm \
+	docker run --rm \
   -v "$(pwd)":/site \
   -w /site \
   my-static-jinja:0.1.1-slim \
