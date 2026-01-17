@@ -1,0 +1,22 @@
+# syntax=docker/dockerfile:1
+FROM python:3.11.9-slim-bookworm
+
+ARG REF_TYPE=tags
+ARG VERSION=0.1.1
+ARG CHECKSUM
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /opt
+
+ADD --checksum=sha256:${CHECKSUM} \
+    https://github.com/MrDave/StaticJinjaPlus/archive/refs/${REF_TYPE}/${VERSION}.tar.gz \
+    /tmp/source.tar.gz
+
+RUN tar -xzf /tmp/source.tar.gz -C /opt && \
+    mv /opt/StaticJinjaPlus-* /opt/StaticJinjaPlus && \
+    rm /tmp/source.tar.gz && \
+    pip install --no-cache-dir -r /opt/StaticJinjaPlus/requirements.txt
+
+ENTRYPOINT ["python", "/opt/StaticJinjaPlus/main.py"]

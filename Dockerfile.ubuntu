@@ -1,0 +1,29 @@
+# syntax=docker/dockerfile:1
+FROM ubuntu:22.04
+
+ARG REF_TYPE=tags
+ARG VERSION=0.1.1
+ARG CHECKSUM
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /opt
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+ADD --checksum=sha256:${CHECKSUM} \
+    https://github.com/MrDave/StaticJinjaPlus/archive/refs/${REF_TYPE}/${VERSION}.tar.gz \
+    /tmp/source.tar.gz
+
+RUN tar -xzf /tmp/source.tar.gz -C /opt && \
+    mv /opt/StaticJinjaPlus-* /opt/StaticJinjaPlus && \
+    rm /tmp/source.tar.gz && \
+    pip3 install --no-cache-dir -r /opt/StaticJinjaPlus/requirements.txt
+
+ENTRYPOINT ["python3", "/opt/StaticJinjaPlus/main.py"]

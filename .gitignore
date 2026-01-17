@@ -1,0 +1,5 @@
+*
+!Dockerfile.slim
+!Dockerfile.ubuntu
+!README.md
+!.gitignore
