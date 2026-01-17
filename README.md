@@ -20,8 +20,8 @@
 
 1. **Получите хэш версии:**
    ```bash
-   curl -L [https://github.com/MrDave/StaticJinjaPlus/archive/refs/tags/0.1.1.tar.gz](https://github.com/MrDave/StaticJinjaPlus/archive/refs/tags/0.1.1.tar.gz) | sha256sum
-```
+		curl -L [https://github.com/MrDave/StaticJinjaPlus/archive/refs/tags/0.1.1.tar.gz](https://github.com/MrDave/StaticJinjaPlus/archive/refs/tags/0.1.1.tar.gz) | sha256sum
+	```
 
 2. **Запустите сборку (Slim версия):**
    ```bash
